@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth import get_user_model, login
+from django.contrib.auth import get_user_model, login, logout
 User = get_user_model()
 
 def signup(request):
@@ -11,3 +11,7 @@ def signup(request):
         return redirect('index') 
         
     return render(request, 'accounts/signup.html')
+
+def logout_user(request):
+    logout(request)
+    return redirect('index')
