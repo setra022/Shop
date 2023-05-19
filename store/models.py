@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Product(models.Model):
     name = models.CharField(max_length=128)
@@ -10,3 +11,6 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse("product", kwargs={"slug": self.slug})
