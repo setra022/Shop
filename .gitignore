@@ -1,2 +1,5 @@
 venv/
 shop/__pycache__/
+store/__pycache__/
+store/migrations/__pycache__/
+db.sqlite3
