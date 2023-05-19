@@ -11,6 +11,10 @@
         <h1>La boutique de Setra</h1>
     </a>
 
+    {% if not user.is_authenticated %}
+    <a href="{% url 'signup' %}">S'inscrire</a>
+    {% endif %}
+
 {% block content %}
 
 {% endblock %}
