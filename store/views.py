@@ -29,3 +29,9 @@ def add_to_cart(request, slug):
 def cart(request):
     cart = get_object_or_404(Cart, user=request.user)
     return render(request, 'store/cart.html', context={"orders": cart.orders.all()})
+
+def delete_cart(request):
+    if cart := request.user.cart:
+        cart.orders.all().delete()
+        cart.delete()
+    return redirect('index')
