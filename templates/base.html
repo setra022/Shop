@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,25 +7,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La boutique de Setra</title>
+    <link rel="stylesheet" href="{% static 'store/style.css' %}" />
 </head>
 <body>
-    <a href="{% url 'index' %}">
-        <h1>La boutique de Setra</h1>
-    </a>
-
-    {% if user.is_authenticated %}
-        {{ user.username }}
-        <a href="{% url 'logout' %}">Déconnexion</a>
-    {% else %}
-        <a href="{% url 'login' %}">Connexion</a>
-        <a href="{% url 'signup' %}">S'inscrire</a>
-    {% endif %}
-
-    {% if user.cart %}
-    <p>
-        <a href="{% url 'cart' %}">Voir le panier ({{ user.cart.orders.count }})</a>
-    </p>
-    {% endif %}
+    <header>
+        <a href="{% url 'index' %}">
+            <h1>La boutique de Setra</h1>
+        </a>
+        <nav class="menu">
+            {% if user.is_authenticated %}
+                {{ user.username }}
+                <a href="{% url 'logout' %}">Déconnexion</a>
+            {% else %}
+                <a href="{% url 'login' %}">Connexion</a>
+                <a href="{% url 'signup' %}">S'inscrire</a>
+            {% endif %}
+        
+            {% if user.cart %}
+            <p>
+                <a href="{% url 'cart' %}">Voir le panier ({{ user.cart.orders.count }})</a>
+            </p>
+            {% endif %}
+        </nav>
+    
+    </header>
 
 {% block content %}
 
